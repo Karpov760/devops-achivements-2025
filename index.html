@@ -188,6 +188,18 @@
                 sidebarToggle.classList.remove('active');
             });
         });
+
+        // Close sidebar when clicking outside of it
+        document.addEventListener('click', (event) => {
+            const isClickInsideSidebar = sidebar.contains(event.target);
+            const isClickOnToggle = sidebarToggle.contains(event.target);
+            
+            // Only close if sidebar is open and click is outside
+            if (sidebar.classList.contains('active') && !isClickInsideSidebar && !isClickOnToggle) {
+                sidebar.classList.remove('active');
+                sidebarToggle.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
