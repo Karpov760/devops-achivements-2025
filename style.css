@@ -1,0 +1,488 @@
+/* Pixel Art Achievements Site - Light Theme */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(180deg, #b39ddb 0%, #ce93d8 20%, #e1bee7 40%, #ffcc80 60%, #ffe082 80%, #fff9c4 100%);
+    background-attachment: fixed;
+    color: #2c3e50;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Pixel stars and plus signs background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        /* Stars - pixel dots */
+        radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.9) 1px, transparent 0),
+        radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.7) 1px, transparent 0),
+        radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.8) 1px, transparent 0),
+        radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.6) 1px, transparent 0),
+        /* Plus signs - cross patterns */
+        linear-gradient(90deg, transparent 1px, rgba(255, 255, 255, 0.7) 1px, rgba(255, 255, 255, 0.7) 2px, transparent 2px),
+        linear-gradient(0deg, transparent 1px, rgba(255, 255, 255, 0.7) 1px, rgba(255, 255, 255, 0.7) 2px, transparent 2px);
+    background-size: 
+        120px 120px,
+        150px 150px,
+        180px 180px,
+        200px 200px,
+        80px 80px,
+        80px 80px;
+    background-position: 
+        20px 30px,
+        150px 200px,
+        300px 100px,
+        450px 350px,
+        100px 150px,
+        100px 150px;
+    pointer-events: none;
+    z-index: 0;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    opacity: 0.6;
+}
+
+.container {
+    max-width: 900px;
+    margin-left: calc(280px + max(0px, (100vw - 280px - 900px) / 4));
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    width: 240px;
+    background: #ffffff;
+    border: 4px solid #8e24aa;
+    box-shadow: 
+        6px 6px 0px #ce93d8,
+        inset 0 0 0 2px #f3e5f5;
+    padding: 20px;
+    z-index: 100;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.sidebar-title {
+    font-size: 12px;
+    color: #8e24aa;
+    text-shadow: 
+        2px 2px 0px #6a1b9a;
+    margin-bottom: 15px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #8e24aa;
+    letter-spacing: 2px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 8px;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 10px 12px;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 9px;
+    line-height: 1.4;
+    background: #f8f9fa;
+    border: 2px solid #8e24aa;
+    box-shadow: 
+        2px 2px 0px #ce93d8,
+        inset 0 0 0 1px #f3e5f5;
+    transition: all 0.1s ease;
+    letter-spacing: 1px;
+}
+
+.sidebar-menu a:hover {
+    background: #e1bee7;
+    transform: translate(-2px, -2px);
+    box-shadow: 
+        4px 4px 0px #ab47bc,
+        inset 0 0 0 1px #f3e5f5;
+    color: #6a1b9a;
+}
+
+.sidebar-menu a:active {
+    transform: translate(0, 0);
+    box-shadow: 
+        2px 2px 0px #ce93d8,
+        inset 0 0 0 1px #f3e5f5;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    background: #ffffff;
+    border: 4px solid #34495e;
+    box-shadow: 
+        8px 8px 0px #bdc3c7,
+        inset 0 0 0 2px #ecf0f1;
+    position: relative;
+}
+
+.title {
+    font-size: 24px;
+    color: #3498db;
+    text-shadow: 
+        2px 2px 0px #2980b9,
+        4px 4px 0px #1f5f8b;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.achievement-counter {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #e8f5e9;
+    border: 3px solid #4caf50;
+    box-shadow: 
+        4px 4px 0px #81c784,
+        inset 0 0 0 1px #c8e6c9;
+}
+
+.counter-label {
+    color: #2e7d32;
+    margin-right: 10px;
+}
+
+.counter-value {
+    color: #1b5e20;
+    font-size: 20px;
+}
+
+/* Achievements List */
+.achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Achievement Card */
+.achievement-card {
+    background: #ffffff;
+    border: 4px solid #34495e;
+    box-shadow: 
+        6px 6px 0px #bdc3c7,
+        inset 0 0 0 2px #ecf0f1;
+    padding: 20px;
+    position: relative;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.achievement-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 
+        8px 8px 0px #95a5a6,
+        inset 0 0 0 2px #ecf0f1;
+}
+
+.achievement-number {
+    display: inline-block;
+    background: #3498db;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 3px solid #2980b9;
+    box-shadow: 
+        3px 3px 0px #1f5f8b,
+        inset 0 0 0 1px #5dade2;
+    font-size: 14px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.achievement-title {
+    font-size: 18px;
+    color: #8e24aa;
+    text-shadow: 
+        3px 3px 0px #6a1b9a,
+        6px 6px 0px rgba(106, 27, 154, 0.5);
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    padding: 10px 0;
+    border-bottom: 3px solid #8e24aa;
+    display: inline-block;
+    width: 100%;
+}
+
+.achievement-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.achievement-text {
+    font-size: 11px;
+    line-height: 1.8;
+    color: #2c3e50;
+    text-align: justify;
+}
+
+.achievement-text p {
+    margin: 0;
+}
+
+/* Image Styles - Pixel Art */
+.achievement-image {
+    width: 100%;
+    max-width: 100%;
+    border: 4px solid #34495e;
+    box-shadow: 
+        4px 4px 0px #bdc3c7,
+        inset 0 0 0 2px #ecf0f1;
+    background: #f8f9fa;
+    padding: 4px;
+    overflow: hidden;
+    min-height: 250px;
+}
+
+.achievement-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter: contrast(1.1) brightness(1.05);
+    transition: transform 0.2s ease;
+}
+
+.achievement-image:hover img {
+    transform: scale(1.02);
+}
+
+/* Cards without images - adjust spacing */
+.achievement-card:not(:has(.achievement-image)) .achievement-content {
+    gap: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        margin-left: 260px;
+    }
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .sidebar-title {
+        font-size: 11px;
+    }
+
+    .sidebar-menu a {
+        font-size: 8px;
+        padding: 8px 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 32px;
+    }
+
+    .sidebar-toggle {
+        display: none;
+    }
+
+    .achievement-content {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .achievement-title {
+        font-size: 22px;
+        letter-spacing: 4px;
+        padding: 12px 0;
+        margin-bottom: 25px;
+    }
+
+    .achievement-text {
+        flex: 1;
+        font-size: 12px;
+    }
+
+    .achievement-image {
+        flex: 0 0 450px;
+        max-width: 450px;
+    }
+
+    .achievement-card {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        padding: 10px;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        top: 10px;
+        width: 240px;
+        transition: left 0.3s ease;
+        z-index: 200;
+    }
+
+    .sidebar.active {
+        left: 10px;
+    }
+
+    .container {
+        padding-left: 0;
+        padding-right: 10px;
+    }
+
+    .sidebar-toggle {
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        width: 50px;
+        height: 50px;
+        background: #8e24aa;
+        border: 3px solid #6a1b9a;
+        box-shadow: 
+            3px 3px 0px #ab47bc,
+            inset 0 0 0 1px #ce93d8;
+        z-index: 201;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 20px;
+        font-family: 'Press Start 2P', cursive;
+    }
+
+    .sidebar-toggle:hover {
+        background: #ab47bc;
+        transform: translate(-1px, -1px);
+        box-shadow: 
+            4px 4px 0px #ce93d8,
+            inset 0 0 0 1px #e1bee7;
+    }
+
+    .achievement-number {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .achievement-title {
+        font-size: 14px;
+        letter-spacing: 2px;
+        padding: 8px 0;
+        margin-bottom: 15px;
+    }
+
+    .achievement-text {
+        font-size: 10px;
+        line-height: 1.6;
+    }
+
+    .achievement-image {
+        border-width: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 14px;
+    }
+
+    .achievement-text {
+        font-size: 9px;
+    }
+
+    .achievement-title {
+        font-size: 12px;
+        letter-spacing: 1px;
+        padding: 6px 0;
+        margin-bottom: 12px;
+    }
+
+    .header {
+        padding: 20px 15px;
+    }
+
+    .sidebar {
+        width: 220px;
+        left: -230px;
+    }
+
+    .sidebar.active {
+        left: 10px;
+    }
+
+    .sidebar-title {
+        font-size: 10px;
+    }
+
+    .sidebar-menu a {
+        font-size: 7px;
+        padding: 6px 8px;
+    }
+}
+
+/* Pixel art decorative elements */
+.achievement-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: transparent;
+    border: 2px solid #ecf0f1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Smooth pixelated borders */
+.achievement-card,
+.achievement-image,
+.header,
+.achievement-counter {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
