@@ -57,7 +57,7 @@ body::before {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin-left: calc(280px + max(0px, (100vw - 280px - 900px) / 4));
     margin-right: auto;
     position: relative;
@@ -249,7 +249,7 @@ html {
 }
 
 .achievement-text {
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.8;
     color: #2c3e50;
     text-align: justify;
@@ -337,7 +337,7 @@ html {
 
     .achievement-text {
         flex: 1;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .achievement-image {
