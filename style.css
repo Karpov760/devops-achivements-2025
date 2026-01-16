@@ -140,11 +140,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Sidebar overlay - скрыт по умолчанию */
-.sidebar-overlay {
-    display: none;
-}
-
 /* Header Styles */
 .header {
     text-align: center;
@@ -404,12 +399,13 @@ html {
 
     .sidebar {
         position: fixed;
-        left: -260px;
+        left: 0;
         top: 0;
         width: 240px;
         height: 100vh;
         max-height: 100vh;
-        transition: left 0.3s ease;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
         z-index: 200;
         border-left: none;
         border-top: none;
@@ -419,26 +415,7 @@ html {
     }
 
     .sidebar.active {
-        left: 0;
-    }
-
-    /* Overlay для мобильных */
-    .sidebar-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 199;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .sidebar-overlay.active {
-        display: block;
-        opacity: 1;
+        transform: translateX(0) !important;
     }
 
     .sidebar-toggle {
@@ -472,6 +449,12 @@ html {
             inset 0 0 0 1px #e1bee7;
     }
 
+    .sidebar-toggle.active {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.8);
+    }
+
     .header {
         padding: 20px 15px;
         margin-bottom: 20px;
@@ -482,6 +465,7 @@ html {
         margin-bottom: 10px;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        text-shadow: none;
     }
 
     #report-form-hint {
@@ -507,6 +491,7 @@ html {
         word-wrap: break-word;
         overflow-wrap: break-word;
         line-height: 1.5;
+        text-shadow: none;
     }
 
     .achievement-text {
@@ -544,6 +529,7 @@ html {
     .title {
         font-size: 16px;
         letter-spacing: 1px;
+        text-shadow: none;
     }
 
     #report-form-hint {
@@ -560,6 +546,7 @@ html {
         letter-spacing: 1px;
         padding: 6px 0;
         margin-bottom: 12px;
+        text-shadow: none;
     }
 
     .header {
@@ -574,11 +561,11 @@ html {
 
     .sidebar {
         width: 220px;
-        left: -228px;
+        transform: translateX(-100%);
     }
 
     .sidebar.active {
-        left: 0;
+        transform: translateX(0) !important;
     }
 
     .sidebar-toggle {
@@ -593,6 +580,7 @@ html {
         font-size: 9px;
         margin-bottom: 12px;
         padding-bottom: 8px;
+        text-shadow: none;
     }
 
     .sidebar-menu a {

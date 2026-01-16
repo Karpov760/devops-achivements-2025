@@ -10,8 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Mobile menu toggle button -->
     <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">☰</button>
+    
     <div class="container">
         <header class="header">
             <h1 class="title">ДОСТИЖЕНИЯ 2025</h1>
@@ -168,31 +169,24 @@
             </article>
         </main>
     </div>
+
     <script>
+        // Mobile menu functionality
         const sidebarToggle = document.getElementById('sidebarToggle');
         const sidebar = document.querySelector('.sidebar');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
         const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
 
-        function toggleSidebar() {
+        // Toggle sidebar on button click
+        sidebarToggle.addEventListener('click', () => {
             sidebar.classList.toggle('active');
-            sidebarOverlay.classList.toggle('active');
-        }
+            sidebarToggle.classList.toggle('active');
+        });
 
-        function closeSidebar() {
-            sidebar.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
-        }
-
-        sidebarToggle.addEventListener('click', toggleSidebar);
-        sidebarOverlay.addEventListener('click', closeSidebar);
-
-        // Закрываем sidebar при клике на ссылку на мобильных устройствах
+        // Close sidebar when clicking on any menu link
         sidebarLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 767) {
-                    closeSidebar();
-                }
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                sidebarToggle.classList.remove('active');
             });
         });
     </script>
